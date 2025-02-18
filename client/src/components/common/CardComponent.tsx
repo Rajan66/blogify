@@ -1,5 +1,7 @@
 "use client";
 import * as React from "react";
+import Link from "next/link";
+
 import {
   Card,
   CardContent,
@@ -8,14 +10,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Image from "next/image";
-import { propInterface } from "../interface/interface";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import ImageComponent from "./image-component";
+import { PropInterface } from "@/interface";
+import { Button } from "../ui/button";
+import ImageComponent from "./ImageComponent";
 
-export function CardComponent(props: propInterface) {
-  const [data, setdata] = React.useState<propInterface>(props);
+export default function CardComponent(props: PropInterface) {
+  const [data, setdata] = React.useState<PropInterface>(props);
   const trimmedDescription =
     data.description.length > 180
       ? data.description.slice(0, 180) + "..."

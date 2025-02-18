@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
-import Link from "next/link";
-import signImage from "../../assets/sign.jpg"; // Adjust based on your folder structure
+
+import signImage from "@/assets/sign.jpg";
 
 export default function LoginForm() {
   return (
@@ -12,7 +14,7 @@ export default function LoginForm() {
       {/* Left side with illustration */}
       <div className="relative hidden lg:flex flex-col items-center justify-center p-8 bg-[#B5CCBE] text-white">
         <div className="max-w-md mx-auto text-center space-y-6">
-          ]
+          
           <Image
             src={signImage}
             alt="Signup Illustration"
