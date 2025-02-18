@@ -1,12 +1,40 @@
 from rest_framework import serializers
 
-from .models import Category, CustomUser, Post
+from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.hashers import make_password
+from rest_framework.exceptions import AuthenticationFailed
+
+from .models import Category, Post
+
+User = get_user_model()
 
 
-class CustomUserSerializer(serializers.ModelSerializer):
+class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
-        fields = "__all__"
+        model = User
+        fields = ['username', 'email', 'password',
+                  'first_name', 'last_name']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)
+
+
+class UserLoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        username = data.get('username')
+        password = data.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if not user:
+            raise AuthenticationFailed("Invalid credentials, try again.")
+
+        return {"user": user}
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -16,29 +44,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
-    user = CustomUserSerializer(read_only=True)
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Post
         fields = "__all__"
-
-
-# class CategorySerializer(serializers.Serializer):
-#     id = serializers.IntegerField(read_only=True)
-#     title = serializers.CharField(max_length=100)
-#     description = serializers.CharField(style={"base_template": "textarea.html"})
-#     created_at = serializers.DateTimeField(read_only=True)
-#     updated_at = serializers.DateTimeField(read_only=True)
-#
-#     def create(self, validated_data):
-#         # create a new category instance, once validate_data is received
-#         return Category.objects.create(**validated_data)
-#
-#     def update(self, instance, validated_data):
-#         instance.title = validated_data.get("title", instance.title)
-#         instance.description = validated_data.get("description", instance.description)
-#         # instance.created_at = validated_data.get("created_at", instance.created_at)
-#         # instance.updated_at = validated_data.get("updated_at", instance.updated_at)
-#         instance.save()
-#         return instance
