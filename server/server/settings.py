@@ -27,9 +27,9 @@ environ.Env.read_env(str(BASE_DIR / ".env"))  # Explicit path to the .env file
 SECRET_KEY = "django-insecure-dss@+1^!4jytj!boaidfn7_36h9tn6r5p9)9^@(fqrf#m*anc5"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
