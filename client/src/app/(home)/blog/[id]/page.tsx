@@ -8,11 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { propInterface } from "../../../interface";
+import { PropInterface } from "../../../../interface";
 import { useBlogContext } from "@/context/use-context";
 import { useParams } from "next/navigation";
 import ImageComponent from "@/components/common/ImageComponent";
-const DetailPage = (props: propInterface) => {
+const DetailPage = (props: PropInterface) => {
   const { id } = useParams();
   const { blogs } = useBlogContext();
   const blog = blogs.find((post) => post.id === id);
