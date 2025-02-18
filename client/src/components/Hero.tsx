@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
-const HeroSection = () => {
+
+const Hero = () => {
   return (
     <div
       className="w-full h-[200px] flex justify-center items-center mb-10"
@@ -19,4 +21,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default Hero;

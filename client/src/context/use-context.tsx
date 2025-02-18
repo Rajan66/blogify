@@ -1,9 +1,9 @@
 "use client";
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { blogContextInterface } from "../interface/interface";
+import { BlogContextInterface } from "../interface";
 
 // Define the context
-const BlogContext = createContext<blogContextInterface | undefined>(undefined);
+const BlogContext = createContext<BlogContextInterface | undefined>(undefined);
 
 // Custom hook to access the BlogContext
 export const useBlogContext = () => {
