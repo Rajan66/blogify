@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 import environ
 
@@ -55,15 +56,30 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
-    "blog",
-    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "blog",
+    "rest_framework",
+    "rest_framework_simplejwt",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),  # 15 minutes for access token
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # 7 days for refresh token
+    # 'ROTATE_REFRESH_TOKENS': True,                    # Rotate refresh tokens after use
+    # 'BLACKLIST_AFTER_ROTATION': True,                 # Blacklist refresh tokens after rotation
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
