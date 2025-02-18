@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { blogContextInterface } from "../../Interface/interface";
+import { blogContextInterface } from "../interface/interface";
 
 // Define the context
 const BlogContext = createContext<blogContextInterface | undefined>(undefined);

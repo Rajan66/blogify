@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import { propInterface } from "../../Interface/interface";
+import { propInterface } from "../interface/interface";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import ImageComponent from "./image-component";
