@@ -1,6 +1,5 @@
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework.parsers import JSONParser
 
@@ -8,16 +7,20 @@ from .models import Category, Post
 from .serializers import CategorySerializer, PostSerializer
 
 
-# Create your views here.
-def index(request):
-    return render(request, "Hello world", context={})
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse(status=200)
+        else:
+            return JsonResponse(status=401)
 
 
-@csrf_exempt
 def category_list(request):
-    """
-    List all categorys, or create a new category.
-    """
     if request.method == "GET":
         categorys = Category.objects.all()
         serializer = CategorySerializer(categorys, many=True)
@@ -33,11 +36,7 @@ def category_list(request):
         return JsonResponse(serializer.errors, status=400)
 
 
-@csrf_exempt
 def category_detail(request, pk):
-    """
-    Retrieve, update or delete a single category.
-    """
     try:
         category = Category.objects.get(pk=pk)
     except category.DoesNotExist:
@@ -58,24 +57,6 @@ def category_detail(request, pk):
     elif request.method == "DELETE":
         category.delete()
         return HttpResponse(status=204)
-
-
-# @csrf_exempt
-# def post_list(request):
-#     if request.method == "GET":
-#         posts = Post.objects.all()
-#         serializer = PostSerializer(posts, many=True)
-#         return JsonResponse(serializer.data, safe=False)
-#
-#     elif request.method == "POST":
-#         data = JSONParser().parse(request)
-#         print(data)
-#         serializer = PostSerializer(data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data, status=201)
-#         return JsonResponse(serializer.errors, status=400)
-#
 
 
 class PostListCreate(generics.ListCreateAPIView):
