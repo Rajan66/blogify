@@ -1,0 +1,22 @@
+import React from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+const HeroSection = () => {
+  return (
+    <div
+      className="w-full h-[200px] flex justify-center items-center mb-10"
+      style={{
+        backgroundImage:
+          "url('/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <Link href="/add-blog">
+        <Button>Add Blog</Button>
+      </Link>
+    </div>
+  );
+};
+
+export default HeroSection;
