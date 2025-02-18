@@ -12,7 +12,7 @@ const HeroSection = () => {
         backgroundPosition: "center",
       }}
     >
-      <Link href="/add-blog">
+      <Link href="/form">
         <Button>Add Blog</Button>
       </Link>
     </div>
