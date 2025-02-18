@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { propInterface } from "../../../../Interface/interface";
+import { propInterface } from "../../../interface/interface";
 import { useBlogContext } from "@/context/use-context";
 import { useParams } from "next/navigation";
 import ImageComponent from "@/components/image-component";
