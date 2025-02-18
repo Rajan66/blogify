@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { BlogProvider } from "@/context/use-context";
+import QueryProvider from "@/providers/QueryProvider";
 
 import "./globals.css";
 
@@ -27,13 +28,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <BlogProvider>
-                <body
-                    className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-                >
-                    {children}
-                </body>
-            </BlogProvider>
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                <QueryProvider>{children}</QueryProvider>
+            </body>
         </html>
     );
 }
