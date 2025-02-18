@@ -8,9 +8,9 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Navbar */}
-      <div className="flex justify-center p-4 border-b bg-white shadow-md">
+      {/* <div className="flex justify-center p-4 border-b bg-white shadow-md">
         <NavBar />
-      </div>
+      </div> */}
 
       {/* Form Container */}
       <div className="flex justify-center mt-10">
@@ -64,7 +64,7 @@ export default function Page() {
             {/* Description Field */}
             <div>
               <label className="block mb-2 text-gray-600 font-medium">
-                Description:
+                Content:
               </label>
               <textarea
                 rows={4}
