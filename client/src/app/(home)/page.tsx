@@ -3,20 +3,20 @@ import Hero from "@/components/Hero";
 import CardComponent from "@/components/common/card-component";
 import { useGetPosts } from "@/hooks/postQueries";
 import { Post } from "@/types";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { isTokenExpired } from "@/hooks/auth-functions";
+
 const page = () => {
-  // const { blogs } = useBlogContext();
   const { data: blogs, isLoading } = useGetPosts();
-  const router = useRouter();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token || isTokenExpired(token)) {
-      router.push("/login");
-    }
-  }, [router]);
+  // const router = useRouter();
+  
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token || isTokenExpired(token)) {
+  //     router.push("/login");
+  //   }
+  // }, [router]);
+
   if (isLoading) return <p>...Loading</p>;
+
   return (
     <div className="w-full">
       <Hero />
