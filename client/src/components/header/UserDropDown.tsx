@@ -20,6 +20,7 @@ const UserDropDown = () => {
     const handleLogout = () => {
         if (token != "" || null) {
             localStorage.setItem("token", "");
+            localStorage.setItem("user", "");
             router.push("/login");
         }
         toast.success("Logged out successfully")

@@ -28,9 +28,11 @@ export const handleFormSubmit = async (
 
     if (response.ok) {
         const data = await response.json();
+
         localStorage.setItem("token", data.access);
-        console.log(data.user);
-        toast.success(`Welcome, ${data.user}`);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        toast.success(`Welcome, ${data.user.username}`);
         router.push("/");
     } else {
         const data = await response.json();
