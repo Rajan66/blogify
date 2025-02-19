@@ -13,13 +13,15 @@ import {
 
 import ImageComponent from "@/components/common/image-component";
 import { useGetPost } from "@/hooks/postQueries";
+import Loading from "@/components/common/Loading";
 
 const DetailPage = () => {
   const { id: id } = useParams();
-  console.log(id);
   const { data: post, isLoading } = useGetPost(Number(id));
+  console.log(post)
 
-  if (isLoading) return <p>....Loading</p>;
+  if (isLoading) return <Loading/>
+
   return (
     <div className="flex items-center justify-center w-full flex-col">
       <Card className="w-[60%] m-5">

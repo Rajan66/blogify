@@ -1,18 +1,16 @@
 import NavBar from "@/components/header/Navbar";
 
 export default function HomeLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <section>
-        <div className=" p-4 border-b bg-card shadow-md">
-        <NavBar />
-        </div>
-   
-
-      {children}
-    </section>
-  );
+    return (
+        <section>
+            <div className="py-4 border-b bg-card shadow-md overflow-x-hidden">
+                <NavBar />
+            </div>
+            {children}
+        </section>
+    );
 }

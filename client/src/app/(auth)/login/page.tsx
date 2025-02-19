@@ -12,8 +12,12 @@ export default function LoginPage() {
     useEffect(() => {
         const token = localStorage.getItem("token");
 
-        if (token) router.push("/");
-    }, []);
+        if (token) {
+            router.push("/");
+        }else{
+          setIsLoading(false)
+        }
+    }, [router]);
 
     if (isLoading) return <Loading />;
 
