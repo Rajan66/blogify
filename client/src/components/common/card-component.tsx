@@ -1,18 +1,17 @@
-import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 
 import { useGetCategory } from "@/hooks/categoryQueries";
-import {  User } from "@/types";
+import { User } from "@/types";
 import { Button } from "../ui/button";
 
 type PostProps = {
@@ -28,8 +27,10 @@ type PostProps = {
 export default function CardComponent(post: PostProps) {
     const { data: category, isLoading } = useGetCategory(post.category);
 
+   
+
     const trimmedDescription =
-        post.content.length > 180 ? post.content.slice(0, 180) + "..." : post.content;
+        post.content.length > 180 ? post.content.slice(0, 50) + "..." : post.content;
 
     return (
         <Card className="w-[400px] m-5">
@@ -43,7 +44,7 @@ export default function CardComponent(post: PostProps) {
                             }
                             width={600}
                             height={100}
-                            className="rounded-t-xl"
+                            className="rounded-t-xl h-[300px]"
                             alt="Blog image"
                         />
                     </div>
