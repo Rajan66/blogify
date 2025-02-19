@@ -33,6 +33,7 @@ class LoginView(APIView):
             {
                 "refresh": str(refresh),
                 "access": str(refresh.access_token),
+                "user": str(user)
             },
             status=status.HTTP_200_OK,
         )
@@ -53,7 +54,6 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
 class PostListCreateView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [AllowAny]
 
     def get_permissions(self):
         if self.request.method == "GET":
@@ -77,4 +77,10 @@ class PostListCreateView(generics.ListCreateAPIView):
 class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny()]
+        elif self.request.method =="PUT" or self.request.method == "DELETE":
+            return [IsAuthenticated()]
+        return super().get_permissions()
