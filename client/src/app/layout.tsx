@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { BlogProvider } from "@/context/use-context";
 import QueryProvider from "@/providers/QueryProvider";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 import "./globals.css";
 
@@ -26,11 +27,26 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <QueryProvider>{children}</QueryProvider>
-            </body>
-        </html>
-    );
+
+ 
+  return (
+    <html lang="en">
+      <BlogProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          {/* {children} */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+                            <QueryProvider>{children}</QueryProvider>
+
+          </ThemeProvider>
+        </body>
+      </BlogProvider>
+    </html>
+  );
 }
