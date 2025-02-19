@@ -16,3 +16,10 @@ export type Post = {
     user: User;
 };
 
+export type Category = {
+    id: number;
+    title: string;
+    description: string;
+    createdAt: string;
+    updatedAt: string;
+};
