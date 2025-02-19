@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
-    //TODO add content and fix height
     return (
         <div
             className="w-full h-[500px] flex justify-center items-center mb-10"

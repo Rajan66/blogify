@@ -48,7 +48,6 @@ export default function page() {
         } else {
             setFormData((prev) => ({ ...prev, image: null }));
         }
-        // TODO Call image save api, the backend gives an url and append that url to the imageUrl
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
