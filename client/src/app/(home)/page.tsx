@@ -4,9 +4,10 @@ import Loading from "@/components/common/Loading";
 import CardComponent from "@/components/common/card-component";
 import { useGetPosts } from "@/hooks/postQueries";
 import { Post } from "@/types";
+import { toast } from "react-toastify";
 
 const page = () => {
-  const { data: blogs, isLoading } = useGetPosts();
+  const { data: blogs, isLoading ,error} = useGetPosts();
   // const router = useRouter();
   
   // useEffect(() => {
@@ -17,6 +18,7 @@ const page = () => {
   // }, [router]);
 
   if (isLoading) return <Loading/>;
+  if(error) return toast.error("Something went wrong")
 
   return (
     <div className="w-full">

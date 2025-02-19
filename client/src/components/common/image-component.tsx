@@ -17,7 +17,6 @@ const ImageComponent: React.FC<ImageComponentProps> = ({
             alt="Image"
             height={imgHeight}
             width={imgWidth}
-            className="rounded-t-xl"
         />
     );
 };

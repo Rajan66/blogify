@@ -29,7 +29,7 @@ const DetailPage = () => {
           <CardTitle className="mb-5">
             <div className="min-h-[300px] w-full flex-1 flex justify-center items-center">
               <ImageComponent
-                imgUrl={"/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg"}
+                imgUrl={post?.image ?? "/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg"}
                 imgHeight={200}
                 imgWidth={900}
               />

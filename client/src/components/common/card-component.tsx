@@ -1,27 +1,33 @@
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
-import { User } from "@/types";
+
+import { useGetCategory } from "@/hooks/categoryQueries";
+import {  User } from "@/types";
 import { Button } from "../ui/button";
-import ImageComponent from "./image-component";
 
 type PostProps = {
     id: number;
     title: string;
     content: string;
     user: User;
+    category: number;
     createdAt: string;
+    image?: string;
 };
 
 export default function CardComponent(post: PostProps) {
+    const { data: category, isLoading } = useGetCategory(post.category);
+
     const trimmedDescription =
         post.content.length > 180 ? post.content.slice(0, 180) + "..." : post.content;
 
@@ -30,16 +36,21 @@ export default function CardComponent(post: PostProps) {
             <CardHeader className="p-0">
                 <CardTitle className="">
                     <div className="min-h-[200px] w-full flex flex-1 items-center justify-center bg-muted/90 rounded-xl">
-                        <ImageComponent
-                            imgUrl={"/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg"}
-                            imgWidth={600}
-                            imgHeight={100}
+                        <Image
+                            src={
+                                post?.image ??
+                                "/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg"
+                            }
+                            width={600}
+                            height={100}
+                            className="rounded-t-xl"
+                            alt="Blog image"
                         />
                     </div>
                 </CardTitle>
                 <div className="p-6 flex flex-col gap-2">
                     <CardTitle>{post.title}</CardTitle>
-                    <CardDescription>Author - {post.user.username}</CardDescription>
+                    <CardDescription>By {post.user.username}</CardDescription>
                 </div>
             </CardHeader>
             <CardContent>
@@ -53,6 +64,11 @@ export default function CardComponent(post: PostProps) {
                 <Link href={`blog/${post.id}`}>
                     <Button>Read Blog</Button>
                 </Link>
+                {isLoading ? (
+                    <h2 className="w-10 bg-gray-500"></h2>
+                ) : (
+                    <h2 className="text-sm opacity-80">Topic: {category.title}</h2>
+                )}
             </CardFooter>
         </Card>
     );

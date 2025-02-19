@@ -101,7 +101,7 @@ export default function page() {
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label className="block mb-2 text-muted-foreground font-medium">
-                                Title:
+                                Title*:
                             </label>
                             <input
                                 type="text"
@@ -110,12 +110,13 @@ export default function page() {
                                 onChange={handleChange}
                                 className="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none bg-background text-foreground"
                                 required
+                                placeholder="Enter blog title..."
                             />
                         </div>
 
                         <div>
                             <label className="block mb-2 text-muted-foreground font-medium">
-                                Category:
+                                Category*:
                             </label>
                             <select
                                 name="category"
@@ -155,7 +156,7 @@ export default function page() {
 
                         <div>
                             <label className="block mb-2 text-muted-foreground font-medium">
-                                Content:
+                                Content*:
                             </label>
                             <textarea
                                 name="content"
@@ -164,6 +165,7 @@ export default function page() {
                                 rows={4}
                                 className="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none bg-background text-foreground"
                                 required
+                                placeholder="Tell us about your blog..."
                             ></textarea>
                         </div>
 
