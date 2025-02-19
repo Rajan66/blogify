@@ -13,10 +13,14 @@ export const handleFormSubmit = async (
   const username: string = usernameProps;
   const password: string = passwordProps;
 
-  const response = await fetchData({
-    usernameProps: username,
-    passwordProps: password,
-  });
+  const response = await fetchData(
+    {
+      usernameProps: username,
+      passwordProps: password,
+    },
+    false,
+    router
+  );
   if (response.ok) {
     const data = await response.json();
     localStorage.setItem("token", data.access);
