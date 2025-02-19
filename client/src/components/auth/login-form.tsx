@@ -35,7 +35,7 @@ export default function LoginForm() {
         <div className="min-h-screen grid lg:grid-cols-2">
             {/* Left side with illustration */}
             <div className="relative hidden lg:flex flex-col items-center justify-center p-8 bg-[#B5CCBE] text-white">
-                <div className="max-w-md mx-auto text-center space-y-6">
+                <div className="max-w-md mx-auto text-center space-y-6 flex flex-col">
                     <Image
                         src={signImage}
                         alt="Signup Illustration"
@@ -47,6 +47,9 @@ export default function LoginForm() {
                     <p className="text-sm text-white/80">
                         Create an account to start sharing your amazing blog posts
                     </p>
+                    <Link href={"/"}>
+                        <Button>Start Reading</Button>
+                    </Link>
                 </div>
             </div>
 
