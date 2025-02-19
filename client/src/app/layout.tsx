@@ -6,6 +6,7 @@ import QueryProvider from "@/providers/QueryProvider";
 import { ThemeProvider } from "@/providers//theme-provider";
 
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
                             enableSystem
                             disableTransitionOnChange
                         >
+                            <ToastContainer />
                             {children}
                         </ThemeProvider>
                     </QueryProvider>
