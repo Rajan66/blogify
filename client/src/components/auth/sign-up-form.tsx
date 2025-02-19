@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import signup from "@/assets/sign.jpg"
 
 export default function SignupForm() {
     const [passwordMatch, setPasswordMatch] = useState(true);
@@ -132,9 +133,9 @@ export default function SignupForm() {
         <div className="min-h-screen grid lg:grid-cols-2">
             {/* Left side with illustration */}
             <div className="relative hidden lg:flex flex-col items-center justify-center p-8 bg-[#B5CCBE] text-white">
-                <div className="max-w-md mx-auto text-center space-y-6">
+                <div className="max-w-md mx-auto text-center space-y-6 flex flex-col">
                     <Image
-                        src="/assets/sign.jpg"
+                        src={signup}
                         alt="Signup Illustration"
                         width={300}
                         height={300}
@@ -144,6 +145,9 @@ export default function SignupForm() {
                     <p className="text-sm text-white/80">
                         Create an account to start sharing your amazing blog posts
                     </p>
+                    <Link href={"/"}>
+                        <Button>Start Reading</Button>
+                    </Link>
                 </div>
             </div>
 
