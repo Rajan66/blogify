@@ -22,6 +22,8 @@ class Post(models.Model):
                              on_delete=models.CASCADE, default=1)
     title = models.CharField(max_length=255)
     content = models.TextField()
+    # store the images in /media/post/
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
