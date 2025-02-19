@@ -29,13 +29,11 @@ export const handleFormSubmit = async (
     if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.access);
+        console.log(data.user);
+        toast.success(`Welcome, ${data.user}`);
         router.push("/");
     } else {
         const data = await response.json();
-        toast.error(data.detail, {
-            autoClose: 3000,
-            pauseOnHover: true,
-            draggable: true,
-        });
+        toast.error(data.detail);
     }
 };
