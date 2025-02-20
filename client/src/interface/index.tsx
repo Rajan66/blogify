@@ -4,6 +4,7 @@ export interface PropInterface {
   title: string;
   author: string;
   description: string;
+  created_at: string;
 }
 
 export interface BlogContextInterface {
