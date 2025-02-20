@@ -26,6 +26,7 @@ export const BlogProvider: React.FC<BlogProviderProps> = ({ children }) => {
       imgUrl: "/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg",
       title: "Optimizing React Performance",
       author: "John Doe",
+      created_at: "",
       description:
         "In this post, we’ll explore various techniques to optimize React app performance. From using memoization to React.lazy for code splitting, and the use of the React Profiler, we’ll dive deep into the tools and strategies that can make your React applications faster and more efficient. Learn how to prevent unnecessary re-renders, reduce the bundle size, and improve loading times for users on all devices.",
     },
@@ -34,6 +35,7 @@ export const BlogProvider: React.FC<BlogProviderProps> = ({ children }) => {
       imgUrl: "/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg",
       title: "Mastering JavaScript Closures",
       author: "Alice Johnson",
+      created_at: "",
       description:
         "JavaScript closures are one of the most powerful and tricky concepts in programming. In this article, we’ll break down what closures are, how they work, and how they can be leveraged in your code to create private variables, handle asynchronous tasks, and avoid memory leaks. Whether you're a beginner or an experienced JavaScript developer, this post will help clarify the concept and provide practical use cases.",
     },
@@ -42,6 +44,7 @@ export const BlogProvider: React.FC<BlogProviderProps> = ({ children }) => {
       imgUrl: "/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg",
       title: "Exploring MongoDB Aggregations",
       author: "James Smith",
+      created_at: "",
       description:
         "MongoDB’s aggregation framework allows you to perform complex queries and transformations on your data. In this post, we'll walk through various aggregation stages like `$group`, `$match`, `$sort`, and `$lookup`. You'll learn how to use MongoDB’s aggregation pipelines to process large datasets, create reports, and extract valuable insights that go beyond basic queries.",
     },
@@ -50,6 +53,7 @@ export const BlogProvider: React.FC<BlogProviderProps> = ({ children }) => {
       imgUrl: "/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg",
       title: "Building a Real-Time Chat App with Node.js and Socket.IO",
       author: "Emily Carter",
+      created_at: "",
       description:
         "In this step-by-step tutorial, we’ll build a real-time chat application using Node.js and Socket.IO. This guide covers everything from setting up the server to creating user interfaces that enable instant messaging between users. Along the way, you'll learn how to manage WebSocket connections, emit and listen for events, and implement basic features like message history, user notifications, and private chats.",
     },

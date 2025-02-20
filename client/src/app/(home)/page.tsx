@@ -8,14 +8,6 @@ import { toast } from "react-toastify";
 
 const page = () => {
   const { data: blogs, isLoading, error } = useGetPosts();
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token || isTokenExpired(token)) {
-  //     router.push("/login");
-  //   }
-  // }, [router]);
 
   if (isLoading) return <Loading />;
   if (error) return toast.error("Something went wrong");
