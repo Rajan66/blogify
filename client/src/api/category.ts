@@ -13,7 +13,7 @@ export const getCategories = async () => {
     }
 };
 
-export const getCategory = async (id: number) => {
+export const getCategory = async (id?: number) => {
     try {
         // const response = await fetch(`${api}/blog/post/${id}/`);
         const response = await fetch(`http://localhost:8000/api/blog/category/${id}/`, {
