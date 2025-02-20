@@ -1,88 +1,181 @@
-import React from "react";
+"use client";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 
-import NavBar from "@/components/header/Navbar";
+import { toast } from "react-toastify";
+
+import { useGetPost } from "@/hooks/postQueries";
+import { useGetCategories, useGetCategory } from "@/hooks/categoryQueries";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Category } from "@/types";
+
+import defaultImage from "@/assets/default.jpg"
 
 export default function page() {
+
+  const { id } = useParams();
+  const { data: post } = useGetPost(Number(id));
+  const { data: cat } = useGetCategory(post?.category);
+  const { data: categories, isLoading: isPending } = useGetCategories();
+
+  const router = useRouter();
+
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState<number | "">("");
+  const [content, setContent] = useState("");
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [newImage, setNewImage] = useState<File | null>(null);
+
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title);
+      setCategory(cat?.id || "");
+      setContent(post.content);
+      setImageUrl(post.image);
+    }
+  }, [post, cat]);
+
+  const handleEdit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("category", category.toString());
+    formData.append("content", content);
+
+    if (newImage) {
+      formData.append("image", newImage); 
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/blog/post/${id}/`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData, 
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Post updated successfully!");
+        router.push(`/blog/${id}`);
+      } else {
+        toast.error("Failed to update the post.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred while updating the post.");
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setNewImage(e.target.files[0]);
+      setImageUrl(URL.createObjectURL(e.target.files[0])); // show new image
+    }
+  };
+
   return (
     <>
       <h1>edit page</h1>
 
-      <div className="min-h-screen bg-gray-100">
-        {/* Navbar */}
-        <div className="flex justify-center p-4 border-b bg-white shadow-md">
-          <NavBar />
-        </div>
-
-        {/* Form Container */}
+      <div className="min-h-screen bg-background">
         <div className="flex justify-center mt-10">
-          <Card className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-8">
-            <h1 className="text-2xl font-bold mb-6 text-center text-gray-700">
-              Edit the Blog
+          <Card className="w-full max-w-2xl bg-card shadow-lg rounded-lg p-8">
+            <h1 className="text-2xl font-bold mb-6 text-center text-foreground">
+              Edit the blog
             </h1>
 
-            <form className="space-y-6">
-              {/* Title Field */}
+            <form className="space-y-6" onSubmit={handleEdit}>
               <div>
-                <label className="block mb-2 text-gray-600 font-medium">
-                  Title:
+                <label className="block mb-2 text-muted-foreground font-medium">
+                  Title*:
                 </label>
                 <input
                   type="text"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  name="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none bg-background text-foreground"
                   required
+                  placeholder="Enter blog title..."
                 />
               </div>
 
-              {/* Category Dropdown */}
               <div>
-                <label className="block mb-2 text-gray-600 font-medium">
-                  Category:
+                <label className="block mb-2 text-muted-foreground font-medium">
+                  Category*:
                 </label>
                 <select
                   name="category"
-                  className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full p-3 border border-border rounded-lg bg-background focus:ring-2 focus:ring-primary focus:outline-none text-foreground"
+                  required
+                  value={category}
+                  onChange={(e) => setCategory(Number(e.target.value))}
                 >
-                  <option value="sports">Sports</option>
-                  <option value="technology">Technology</option>
-                  <option value="music">Music</option>
-                  <option value="lifestyle">Lifestyle</option>
-                  <option value="food">Food</option>
+                  {isPending ? (
+                    <option disabled>Loading categories...</option>
+                  ) : (
+                    categories?.map((catItem: Category) => (
+                      <option key={catItem.id} value={catItem.id}>
+                        {catItem.title}
+                      </option>
+                    ))
+                  )}
                 </select>
               </div>
 
-              {/* Image Upload */}
               <div>
-                <label className="block mb-2 text-gray-600 font-medium">
+                <label className="block mb-2 text-muted-foreground font-medium">
                   Image:
                 </label>
+                <Image
+                  src={imageUrl || defaultImage}
+                  alt="Blog Image"
+                  width={500}
+                  height={160}
+                  className="w-full h-40 object-cover rounded-lg mb-2"
+                />
                 <input
                   type="file"
                   accept="image/png, image/jpeg"
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full p-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none bg-background text-foreground"
+                  onChange={handleFileChange}
                 />
               </div>
 
-              {/* Description Field */}
               <div>
-                <label className="block mb-2 text-gray-600 font-medium">
-                  Description:
+                <label className="block mb-2 text-muted-foreground font-medium">
+                  Content*:
                 </label>
                 <textarea
+                  name="content"
                   rows={4}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  className="w-full p-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none bg-background text-foreground"
                   required
+                  placeholder="Tell us about your blog..."
                 ></textarea>
               </div>
 
-              {/* Submit Button */}
-              <div className="flex justify-center">
+              <div className="flex gap-4 mt-6">
+                <Button type="submit" className="bg-blue-500 hover:bg-blue-600">
+                  Edit
+                </Button>
                 <Button
-                  type="submit"
-                  className="w-full py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition duration-300"
+                  type="button"
+                  className="bg-gray-500 hover:bg-gray-600"
+                  onClick={() => router.push(`/blog/`)}
                 >
-                  Create
+                  Cancel
                 </Button>
               </div>
             </form>

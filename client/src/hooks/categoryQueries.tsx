@@ -9,7 +9,7 @@ export const useGetCategories = () => {
     return { data, isLoading };
 };
 
-export const useGetCategory = (id: number) => {
+export const useGetCategory = (id?: number) => {
     const { data, isLoading } = useQuery({
         queryKey: ["categories", id],
         queryFn: () => getCategory(id),

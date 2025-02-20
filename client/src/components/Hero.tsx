@@ -2,29 +2,40 @@ import React from "react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { NotebookPen } from "lucide-react";
 
 const Hero = () => {
-    return (
-        <div
-            className="w-full h-[500px] flex justify-center items-center mb-10"
-            style={{
-                backgroundImage: "url('/assets/hero.jpg')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}
-        >
-            <div className="flex flex-col  items-center w-full text-black gap-4">
-                <div className="flex flex-col justify-start items-center" >
-                     {/* TODO change the texts xd */}
-                    <h1 className="text-[50px]">Main catch phrase</h1>
-                    <h3 className="text-xl">A place to read, write and eat</h3>
-                </div>
-                <Link href="/form">
-                    <Button className="bg-black hover:bg-gray-900 text-white text-lg rounded-xl w-fit px-10 h-10 tracking-wider">Start writing</Button>
-                </Link>
-            </div>
+  return (
+    <div
+      className="w-full h-[500px] flex justify-center items-center mb-10"
+      style={{
+        backgroundImage: "url('/assets/hero.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="flex flex-col items-center w-full text-black gap-6 text-center px-6">
+        <div className="flex flex-col justify-start items-center">
+          {/* Enhanced h1 styles */}
+          <h1 className="text-[55px] sm:text-[60px] font-extrabold leading-tight text-gray-900 drop-shadow-lg tracking-wide">
+            What’s on Your Mind Today?
+          </h1>
+          {/* Enhanced h3 styles */}
+          <h3 className="text-lg sm:text-xl font-medium text-gray-800 mt-3 max-w-3xl leading-relaxed">
+            From daily musings to deep insights, express your thoughts and
+            <br/>
+            engage with a like-minded audience.
+          </h3>
         </div>
-    );
+        {/* Improved Button Styling */}
+        <Link href="/form">
+          <Button className="text-white text-lg font-semibold rounded-lg px-8 py-3 tracking-wide shadow-md transform transition-all duration-300 hover:scale-105 flex items-center gap-2 border border-transparent hover:border-white">
+            <NotebookPen className="w-5 h-5" /> Start Writing
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default Hero;
