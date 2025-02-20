@@ -44,10 +44,10 @@ export default function CardComponent(post: PostProps) {
 
   return (
     <Link href={`blog/${post.id}`}>
-      <Card className="w-[300px] m-5">
+      <Card className="w-[380px] m-5">
         <CardHeader className="p-0">
           <CardTitle>
-            <div className="min-h-[200px] w-full flex flex-1 items-center justify-center">
+            <div className="min-h-[250px] w-full flex flex-1 items-center justify-center">
               <Image
                 src={post?.image ?? defaultImage}
                 width={600}
