@@ -13,7 +13,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Card,
   CardContent,
@@ -26,10 +26,9 @@ import {
 import ImageComponent from "@/components/common/image-component";
 import { useGetPost } from "@/hooks/postQueries";
 import Loading from "@/components/common/Loading";
-import { Button } from "@/components/ui/button";
 
-import defaultImage from "@/assets/default.jpg"
-
+import defaultImage from "@/assets/default.jpg";
+import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 const DetailPage = () => {
   const [isAuthor, setIsAuthor] = useState<boolean>(false);
   const { id: id } = useParams();
@@ -82,40 +81,6 @@ const DetailPage = () => {
 
   return (
     <div className="flex items-center justify-center w-full flex-col">
-      {isAuthor && (
-        <div className="flex gap-4 mt-4">
-          <Button
-            className="bg-green-500 hover:bg-green-600"
-            onClick={() => router.push(`/form/${id}`)}
-          >
-            Edit
-          </Button>
-
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button className="bg-red-500 hover:bg-red-600">Delete</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your post.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={handleDelete}
-                  className="bg-red-500 hover:bg-red-600"
-                >
-                  Yes, Delete
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </div>
-      )}
       <Card className="w-[60%] m-5">
         <CardHeader>
           <CardTitle className="mb-5">
@@ -128,7 +93,51 @@ const DetailPage = () => {
             </div>
           </CardTitle>
           <CardTitle>{post?.title}</CardTitle>
-          <CardDescription>Author - {post?.user.username}</CardDescription>
+          <CardDescription className="flex justify-between items-center">
+            <div className="author">Author - {post?.user.username}</div>
+            <div className="edit-div">
+              {isAuthor && (
+                <div className="flex gap-4 mt-4">
+                  <center>
+                    <FontAwesomeIcon
+                      icon={faPen}
+                      size="1x"
+                      className="mr-3 text-blue-500"
+                      onClick={() => router.push(`/form/${id}`)}
+                    />
+                  </center>
+
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        size="1x"
+                        className="mr-3 text-red-600"
+                      />
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently
+                          delete your post.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={handleDelete}
+                          className="bg-red-500 hover:bg-red-600"
+                        >
+                          Yes, Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
+              )}
+            </div>
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="post-description">

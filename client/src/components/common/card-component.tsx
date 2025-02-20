@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUser,
   faCalendar,
   faHandsClapping,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 
@@ -19,9 +19,9 @@ import {
 } from "@/components/ui/card";
 
 import { User } from "@/types";
-import { formatDate } from "@/lib/data-format";
+import { formatDate } from "@/lib/date-format";
 
-import defaultImage from "@/assets/default.jpg"
+import defaultImage from "@/assets/default.jpg";
 
 type PostProps = {
   id: number;
@@ -34,8 +34,6 @@ type PostProps = {
 };
 
 export default function CardComponent(post: PostProps) {
-  //   const { data: category, isLoading } = useGetCategory(post.category);
-
   const formatPostDate = formatDate(post.created_at);
   const trimmedDescription =
     post.content.length > 180
@@ -58,11 +56,11 @@ export default function CardComponent(post: PostProps) {
             </div>
           </CardTitle>
 
-          <CardDescription className="text-xs font-thin">
+          <CardDescription className="text-sm font-thin text-gray-500">
             <FontAwesomeIcon
-              icon={faUser}
+              icon={faPen}
               size="1x"
-              className="mr-5 text-gray-500"
+              className="mr-3 text-gray-500"
             />
             {post.user.username}
           </CardDescription>
@@ -90,7 +88,7 @@ export default function CardComponent(post: PostProps) {
               <FontAwesomeIcon
                 icon={faHandsClapping}
                 size="1x"
-                className="ml-5 mr-1 text-gray-500"
+                className="ml-5 mr-3 text-gray-500"
               />
               20
             </div>
