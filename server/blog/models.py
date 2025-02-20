@@ -29,3 +29,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Collection(models.Model):
+    user = models.ForeignKey(User, related_name="colleciton_user",
+                             on_delete=models.CASCADE, default=1)
+    post = models.ForeignKey(Post, related_name="colleciton_post",
+                             on_delete=models.CASCADE)
+    saved_at = models.DateTimeField(auto_now_add=True)
