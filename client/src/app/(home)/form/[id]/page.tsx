@@ -14,7 +14,7 @@ import { Category } from "@/types";
 import defaultImage from "@/assets/default.jpg"
 
 export default function page() {
-
+  
   const { id } = useParams();
   const { data: post } = useGetPost(Number(id));
   const { data: cat } = useGetCategory(post?.category);
@@ -48,7 +48,7 @@ export default function page() {
     formData.append("content", content);
 
     if (newImage) {
-      formData.append("image", newImage); 
+      formData.append("image", newImage);
     }
 
     try {
@@ -59,7 +59,7 @@ export default function page() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          body: formData, 
+          body: formData,
         }
       );
 
@@ -173,7 +173,7 @@ export default function page() {
                 <Button
                   type="button"
                   className="bg-gray-500 hover:bg-gray-600"
-                  onClick={() => router.push(`/blog/`)}
+                  onClick={() => router.push(`/`)}
                 >
                   Cancel
                 </Button>

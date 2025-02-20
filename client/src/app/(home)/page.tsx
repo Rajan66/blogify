@@ -16,7 +16,7 @@ const page = () => {
     <div className="w-full">
       <Hero />
       <div className="flex items-center justify-center m-5 border-gray-200">
-        <div className="grid grid-cols-3 gap-4 m-auto mt-5">
+        <div className="grid grid-cols-3 gap-7   m-auto mt-5">
           {blogs.map((item: Post, index: number) => (
             <CardComponent key={index} {...item} />
           ))}
