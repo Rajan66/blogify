@@ -7,35 +7,22 @@ import { useGetCategories } from "@/hooks/categoryQueries";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/common/Loading";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-<<<<<<< Updated upstream
-export default function Page() {
-  const { data: categories, isLoading: isPending } = useGetCategories();
-  const router = useRouter();
-=======
 export default function page() {
   const { data: categories, isLoading: isPending } = useGetCategories();
->>>>>>> Stashed changes
 
   const [formData, setFormData] = useState({
     title: "",
     category: "",
     image: null as File | null,
     content: "",
-<<<<<<< Updated upstream
-  });
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-=======
     imgUrl: "",
   });
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
  
->>>>>>> Stashed changes
 
   useEffect(() => {
     const token = localStorage.getItem("token");
