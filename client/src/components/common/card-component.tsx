@@ -19,7 +19,7 @@ import {
 
 import { useGetCategory } from "@/hooks/categoryQueries";
 import { User } from "@/types";
-import { formatDate } from "@/lib/data-format";
+import { formatDate } from "@/lib/date-format";
 
 type PostProps = {
   id: number;
