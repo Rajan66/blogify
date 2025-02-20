@@ -10,18 +10,32 @@ import Loading from "@/components/common/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+<<<<<<< Updated upstream
 export default function Page() {
   const { data: categories, isLoading: isPending } = useGetCategories();
   const router = useRouter();
+=======
+export default function page() {
+  const { data: categories, isLoading: isPending } = useGetCategories();
+>>>>>>> Stashed changes
 
   const [formData, setFormData] = useState({
     title: "",
     category: "",
     image: null as File | null,
     content: "",
+<<<<<<< Updated upstream
   });
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
+=======
+    imgUrl: "",
+  });
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const router = useRouter();
+ 
+>>>>>>> Stashed changes
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -48,6 +62,8 @@ export default function Page() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setFormData((prev) => ({ ...prev, image: e.target.files[0] }));
+    } else {
+      setFormData((prev) => ({ ...prev, image: null }));
     }
   };
 
@@ -78,24 +94,21 @@ export default function Page() {
       });
 
       if (response.ok) {
-        toast.success("Blog created successfully! 🎉");
+        toast.success("Blog created successfully!");
         router.push("/");
       } else if (response.status === 401) {
-        localStorage.removeItem("token");
+        localStorage.setItem("token", "");
         router.push("/login");
         toast.error("Unauthorized access. Please log in.");
-      } else {
-        toast.error("Failed to create blog. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error("An error occurred while creating the blog.");
+      alert("An error occurred.");
     }
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <ToastContainer position="top-right" autoClose={3000} />
       <div className="flex justify-center mt-10">
         <Card className="w-full max-w-2xl bg-card shadow-lg rounded-lg p-8">
           <h1 className="text-2xl font-bold mb-6 text-center text-foreground">
