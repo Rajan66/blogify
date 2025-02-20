@@ -1,16 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
-
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+
 import { toast } from "react-toastify";
+
 import { useGetPost } from "@/hooks/postQueries";
 import { useGetCategories, useGetCategory } from "@/hooks/categoryQueries";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Category } from "@/types";
 
-
-import defaultImage from "@/assets/login.jpg"
+import defaultImage from "@/assets/default.jpg"
 
 export default function page() {
 
@@ -122,7 +123,7 @@ export default function page() {
                   {isPending ? (
                     <option disabled>Loading categories...</option>
                   ) : (
-                    categories?.map((catItem) => (
+                    categories?.map((catItem: Category) => (
                       <option key={catItem.id} value={catItem.id}>
                         {catItem.title}
                       </option>
@@ -136,7 +137,7 @@ export default function page() {
                   Image:
                 </label>
                 <Image
-                  src={imageUrl ?? defaultImage}
+                  src={imageUrl || defaultImage}
                   alt="Blog Image"
                   width={500}
                   height={160}

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { BlogProvider } from "@/context/use-context";
+import { ToastContainer } from "react-toastify";
+
 import QueryProvider from "@/providers/QueryProvider";
 import { ThemeProvider } from "@/providers//theme-provider";
 
 import "./globals.css";
-import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -30,23 +30,19 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <BlogProvider>
-                <body
-                    className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-                >
-                    <QueryProvider>
-                        <ThemeProvider
-                            attribute="class"
-                            defaultTheme="system"
-                            enableSystem
-                            disableTransitionOnChange
-                        >
-                            <ToastContainer />
-                            {children}
-                        </ThemeProvider>
-                    </QueryProvider>
-                </body>
-            </BlogProvider>
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                <QueryProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <ToastContainer />
+                        {children}
+                    </ThemeProvider>
+                </QueryProvider>
+            </body>
         </html>
     );
 }

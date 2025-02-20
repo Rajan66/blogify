@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faCalendar,
   faHandsClapping,
 } from "@fortawesome/free-solid-svg-icons";
-
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+
 import {
   Card,
   CardContent,
@@ -17,9 +18,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { useGetCategory } from "@/hooks/categoryQueries";
 import { User } from "@/types";
 import { formatDate } from "@/lib/data-format";
+
+import defaultImage from "@/assets/default.jpg"
 
 type PostProps = {
   id: number;
@@ -47,10 +49,7 @@ export default function CardComponent(post: PostProps) {
           <CardTitle>
             <div className="min-h-[200px] w-full flex flex-1 items-center justify-center">
               <Image
-                src={
-                  post?.image ??
-                  "/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg"
-                }
+                src={post?.image ?? defaultImage}
                 width={600}
                 height={100}
                 className="h-[200px]"

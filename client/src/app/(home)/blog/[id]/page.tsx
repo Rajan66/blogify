@@ -28,6 +28,8 @@ import { useGetPost } from "@/hooks/postQueries";
 import Loading from "@/components/common/Loading";
 import { Button } from "@/components/ui/button";
 
+import defaultImage from "@/assets/default.jpg"
+
 const DetailPage = () => {
   const [isAuthor, setIsAuthor] = useState<boolean>(false);
   const { id: id } = useParams();
@@ -119,10 +121,7 @@ const DetailPage = () => {
           <CardTitle className="mb-5">
             <div className="min-h-[300px] w-full flex-1 flex justify-center items-center">
               <ImageComponent
-                imgUrl={
-                  post?.image ??
-                  "/assets/lautaro-andreani-xkBaqlcqeb4-unsplash.jpg"
-                }
+                imgUrl={post?.image ?? defaultImage}
                 imgHeight={200}
                 imgWidth={900}
               />
