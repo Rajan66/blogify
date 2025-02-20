@@ -7,9 +7,9 @@ import { Post } from "@/types";
 import { toast } from "react-toastify";
 
 const page = () => {
-  const { data: blogs, isLoading ,error} = useGetPosts();
+  const { data: blogs, isLoading, error } = useGetPosts();
   // const router = useRouter();
-  
+
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
   //   if (!token || isTokenExpired(token)) {
@@ -17,8 +17,8 @@ const page = () => {
   //   }
   // }, [router]);
 
-  if (isLoading) return <Loading/>;
-  if(error) return toast.error("Something went wrong")
+  if (isLoading) return <Loading />;
+  if (error) return toast.error("Something went wrong");
 
   return (
     <div className="w-full">
