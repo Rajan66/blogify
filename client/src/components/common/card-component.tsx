@@ -42,10 +42,10 @@ export default function CardComponent(post: PostProps) {
 
   return (
     <Link href={`blog/${post.id}`}>
-      <Card className="w-[380px] m-5">
+      <Card className="w-[380px] flex flex-col h-full">
         <CardHeader className="p-0">
           <CardTitle>
-            <div className="min-h-[250px] w-full flex flex-1 items-center justify-center">
+            <div className="min-h-[200px] w-full flex flex-1 items-center justify-center">
               <Image
                 src={post?.image ?? defaultImage}
                 width={600}
@@ -56,25 +56,22 @@ export default function CardComponent(post: PostProps) {
             </div>
           </CardTitle>
 
-          <CardDescription className="text-sm font-thin text-gray-500">
-            <FontAwesomeIcon
-              icon={faPen}
-              size="1x"
-              className="mr-3 text-gray-500"
-            />
+          <CardDescription className="text-xs font-thin text-gray-500">
+            <FontAwesomeIcon icon={faPen} className="mr-1 text-gray-500" />
             {post.user.username}
           </CardDescription>
 
-          <CardTitle className="text-base mt-5 h-10">{post.title}</CardTitle>
+          <CardTitle className="text-xl tracking-tight">{post.title}</CardTitle>
         </CardHeader>
-        <CardContent className="mb-2">
-          <div className="blog-description h-10 text-gray-500 text-sm">
+        <CardContent className="mb-2 flex-grow">
+          <div className="blog-description text-gray-500 text-sm">
             <div className=" w-full flex-1">
               <p className="opacity-80 text-sm">{trimmedDescription}</p>
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between items-center">
+
+        <CardFooter className="flex justify-between items-center w-full mt-auto">
           <div className="post-details text-xs text-gray-500">
             <div className="inline">
               <FontAwesomeIcon
