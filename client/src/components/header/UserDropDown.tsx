@@ -58,7 +58,7 @@ const UserDropDown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar>
+        <Avatar className="cursor-pointer">
           {/* Use first letter of the user's name as avatar */}
           <AvatarImage>
             <span className="text-xl font-semibold">{avatarLetter}</span>

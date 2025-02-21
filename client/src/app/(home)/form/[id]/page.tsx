@@ -11,10 +11,9 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Category } from "@/types";
 
-import defaultImage from "@/assets/default.jpg"
+import defaultImage from "@/assets/default.jpg";
 
 export default function page() {
-  
   const { id } = useParams();
   const { data: post } = useGetPost(Number(id));
   const { data: cat } = useGetCategory(post?.category);
@@ -84,8 +83,6 @@ export default function page() {
 
   return (
     <>
-      <h1>edit page</h1>
-
       <div className="min-h-screen bg-background">
         <div className="flex justify-center mt-10">
           <Card className="w-full max-w-2xl bg-card shadow-lg rounded-lg p-8">

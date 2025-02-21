@@ -16,3 +16,7 @@ export interface formInterface {
   usernameProps: string;
   passwordProps: string;
 }
+export interface AlertInterface {
+  router: any;
+  id: string | string[] | undefined;
+}
