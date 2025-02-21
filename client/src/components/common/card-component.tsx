@@ -35,12 +35,8 @@ type PostProps = {
 
 export default function CardComponent(post: PostProps) {
   const formatPostDate = formatDate(post.created_at);
-  const trimmedDescription =
-    post.content.length > 180
-      ? post.content.slice(0, 50) + "..."
-      : post.content;
 
-  return (
+   return (
     <Link href={`blog/${post.id}`}>
       <Card className="w-[380px] flex flex-col h-full">
         <CardHeader className="p-0">
@@ -65,8 +61,8 @@ export default function CardComponent(post: PostProps) {
         </CardHeader>
         <CardContent className="mb-2 flex-grow">
           <div className="blog-description text-gray-500 text-sm">
-            <div className=" w-full flex-1">
-              <p className="opacity-80 text-sm">{trimmedDescription}</p>
+            <div className="w-full flex-1">
+              <p className="opacity-80 text-sm truncate">{post.content}</p>
             </div>
           </div>
         </CardContent>

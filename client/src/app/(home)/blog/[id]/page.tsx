@@ -45,11 +45,9 @@ const DetailPage = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="post-description">
-            <div className=" w-full flex-1">
-              <p className="py-5 tracking-wide text-justify">{post?.content}</p>
-            </div>
-          </div>
+          <CardDescription className="overflow-hidden py-5 tracking-wide text-justify text-base break-words">
+            {post?.content}
+          </CardDescription>
         </CardContent>
         <CardFooter className="flex justify-between"></CardFooter>
       </Card>
