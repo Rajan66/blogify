@@ -6,23 +6,23 @@ import SignupForm from "@/components/auth/sign-up-form";
 import Loading from "@/components/common/Loading";
 
 export default function Page() {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const router = useRouter();
-    
-    useEffect(() => {
-        const token = localStorage.getItem("token");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const router = useRouter();
 
-        if (token) {
-            router.push("/");
-        } else {
-            setIsLoading(false);
-        }
-    }, [router]);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-    if (isLoading) return <Loading />;
-    return (
-        <>
-            <SignupForm />;
-        </>
-    );
+    if (token) {
+      router.push("/");
+    } else {
+      setIsLoading(false);
+    }
+  }, [router]);
+
+  if (isLoading) return <Loading />;
+  return (
+    <>
+      <SignupForm />
+    </>
+  );
 }
