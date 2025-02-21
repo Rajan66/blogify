@@ -23,7 +23,7 @@ const AlertComponent = ({ id, router }: AlertInterface) => {
           <FontAwesomeIcon
             icon={faPen}
             size="1x"
-            className="mr-3 text-blue-500"
+            className="mr-3 text-blue-500 cursor-pointer"
             onClick={() => router.push(`/form/${id}`)}
           />
         </center>
@@ -33,7 +33,7 @@ const AlertComponent = ({ id, router }: AlertInterface) => {
             <FontAwesomeIcon
               icon={faTrash}
               size="1x"
-              className="mr-3 text-red-600"
+              className="mr-3 text-red-600 cursor-pointer"
             />
           </AlertDialogTrigger>
           <AlertDialogContent>
